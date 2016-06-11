@@ -12,6 +12,16 @@ function drawEnemies() {
   }
 }
 
+function collidesWithPlayer(playerRect) {
+  for (let i = 0; i < enemies.length; i++) {
+    if (isColliding(playerRect, enemies[i])) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
 function spawnEnemy() {
   let x = Math.random() * (canvas.width-50);
   let y = 0 - 50;

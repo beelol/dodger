@@ -1,3 +1,5 @@
+let gameEnded = false;
+
 function drawPlayer() {
   drawRectangle(playerX, playerY, 50, 50, "blue");
 }
@@ -16,9 +18,22 @@ function run() {
     playerX -= 7;
   }
 
+  let playerRect = {x:playerX, y:playerY, width:50, length:50};
+
+  if (collidesWithPlayer(playerRect)) {
+    gameEnded = true;
+    alert("Game Over!");
+
+    clearInterval(enemySpawnLoop);
+    clearInterval(enemyMoveLoop);
+    clearInterval(gameLoop);
+
+    // wipe the page clean!
+  }
+
   draw();
 }
 
-setInterval(spawnEnemy, 1000)
-setInterval(moveEnemies, 10)
-setInterval(run, 10);
+let enemySpawnLoop = setInterval(spawnEnemy, 1000);
+let enemyMoveLoop = setInterval(moveEnemies, 10);
+let gameLoop = setInterval(run, 10);
