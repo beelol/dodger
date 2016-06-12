@@ -12,6 +12,10 @@ function drawEnemies() {
   }
 }
 
+function clearEnemies() {
+  enemies = [];
+}
+
 function collidesWithPlayer(playerRect) {
   for (let i = 0; i < enemies.length; i++) {
     if (isColliding(playerRect, enemies[i])) {

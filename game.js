@@ -22,16 +22,34 @@ function run() {
 
   if (collidesWithPlayer(playerRect)) {
     gameEnded = true;
-    alert("Game Over!");
-
-    clearInterval(enemySpawnLoop);
-    clearInterval(enemyMoveLoop);
-    clearInterval(gameLoop);
-
-    canvas.style.display="none";
+    gameOver();
   }
 
   draw();
+}
+
+function stop() {
+  clearInterval(enemySpawnLoop);
+  clearInterval(enemyMoveLoop);
+  clearInterval(gameLoop);
+}
+
+function gameOver() {
+  let bool = confirm("Game Over! Play again?");
+  stop();
+  if (bool) {
+    rightPressed = false;
+    leftPressed = false;
+    playerX = canvas.width/2 - 25;
+    clearEnemies();
+    enemySpawnLoop = setInterval(spawnEnemy, 1000);
+    enemyMoveLoop = setInterval(moveEnemies, 10);
+    gameLoop = setInterval(run, 10);
+  } else if (bool === false) {
+    canvas.style.display = 'none';
+  }
+
+
 }
 
 let enemySpawnLoop = setInterval(spawnEnemy, 1000);
