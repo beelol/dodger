@@ -12,6 +12,15 @@ function drawEnemies() {
   }
 }
 
+function deleteEnemies() {
+  for (let i=0; i<enemies.length; i++) {
+    if (enemies[i].y > canvas.height) {
+      enemies.splice(i,1);
+      console.log(`Deleted the enemy at ${enemies[i].y} `);
+    }
+  }
+}
+
 function clearEnemies() {
   enemies = [];
 }

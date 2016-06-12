@@ -17,6 +17,12 @@ function keyDownHandler(e) {
     }
 }
 
+function resetPlayer() {
+  rightPressed = false;
+  leftPressed = false;
+  playerX = canvas.width/2 - 25;
+}
+
 function keyUpHandler(e) {
     if(e.keyCode == 39) {
         rightPressed = false;

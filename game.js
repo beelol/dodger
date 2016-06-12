@@ -1,4 +1,8 @@
 let gameEnded = false;
+let enemySpawnLoop;
+let enemyMoveLoop;
+let enemyDeleteLoop;
+let gameLoop;
 
 function drawPlayer() {
   drawRectangle(playerX, playerY, 50, 50, "blue");
@@ -32,26 +36,27 @@ function stop() {
   clearInterval(enemySpawnLoop);
   clearInterval(enemyMoveLoop);
   clearInterval(gameLoop);
+  clearInterval(enemyDeleteLoop);
 }
 
 function gameOver() {
   let bool = confirm("Game Over! Play again?");
   stop();
   if (bool) {
-    rightPressed = false;
-    leftPressed = false;
-    playerX = canvas.width/2 - 25;
     clearEnemies();
-    enemySpawnLoop = setInterval(spawnEnemy, 1000);
-    enemyMoveLoop = setInterval(moveEnemies, 10);
-    gameLoop = setInterval(run, 10);
+    resetPlayer();
+    startLoop();
   } else if (bool === false) {
     canvas.style.display = 'none';
   }
-
-
 }
 
-let enemySpawnLoop = setInterval(spawnEnemy, 1000);
-let enemyMoveLoop = setInterval(moveEnemies, 10);
-let gameLoop = setInterval(run, 10);
+function startLoop() {
+  enemySpawnLoop = setInterval(spawnEnemy, 1000);
+  enemyMoveLoop = setInterval(moveEnemies, 10);
+  enemyDeleteLoop = setInterval(deleteEnemies, 500);
+  gameLoop = setInterval(run, 10);
+}
+
+
+startLoop();
