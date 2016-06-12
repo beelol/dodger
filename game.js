@@ -28,7 +28,7 @@ function run() {
     clearInterval(enemyMoveLoop);
     clearInterval(gameLoop);
 
-    // wipe the page clean!
+    canvas.style.display="none";
   }
 
   draw();
