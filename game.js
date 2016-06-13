@@ -70,6 +70,10 @@ function startLoop() {
   enemySpawnLoop = setInterval(Enemy.spawnEnemy, 1000);
   // gameLoop = setInterval(run, 10);
   drawLoop = setInterval(drawActors, 10);
+  // enemySpawnLoop = setInterval(spawnEnemy, 200);
+  // enemyMoveLoop = setInterval(moveEnemies, 10);
+  // enemyDeleteLoop = setInterval(deleteEnemies, 500);
+  // gameLoop = setInterval(run, 10);
 }
 
 spawnPlayer();
