@@ -5,17 +5,23 @@
 // const Player = require('./player');
 
 let actors;
+let enemySpawnLoop;
 let enemyMoveLoop;
 let gameLoop;
 let player;
 
 function resetGame() {
   spawnPlayer();
-  startLoop();
+  //spawnEnemies();
+  //startLoop();
 }
 
 function spawnPlayer() {
   Player.spawnPlayer();
+}
+
+function spawnEnemies() {
+  Enemy.spawnEnemy();
 }
 
 function drawActors() {
@@ -63,11 +69,11 @@ function endGame() {
 }
 
 function startLoop() {
-  // enemySpawnLoop = setInterval(spawnEnemy, 1000);
+  enemySpawnLoop = setInterval(Enemy.spawnEnemy, 1000);
   gameLoop = setInterval(run, 10);
   drawLoop = setInterval(drawActors, 10);
 }
 
 // console.log('hello');
 resetGame();
-// startLoop();
+startLoop();

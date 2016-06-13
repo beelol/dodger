@@ -14,8 +14,7 @@ Actor.prototype.isColliding = function(actor) {
 };
 
 Actor.prototype.move = function (vector) {
-  // console.log("together we made it");
-
+  // console.log(vector.toString());
   this.rect.left += vector.x;
   this.rect.top += vector.y;
 };
@@ -27,12 +26,6 @@ Actor.prototype.draw = function() {
 Actor.prototype.tick = function () {
   // this.draw(this.color);
 };
-
-Actor.prototype.receiveInput = function () {
-  // for the player, we move based on arrows
-
-  // for enemy we move down
-}
 
 Actor.prototype.outOfBounds = function () {
   return this.rect.top > canvas.height;
