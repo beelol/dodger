@@ -10,14 +10,30 @@ let enemyMoveLoop;
 let gameLoop;
 let player;
 
+function clearEnemies() {
+  // console.log(Enemy.enemies.length);
+
+  Enemy.enemies.forEach(function (enemy) {
+    // enemy.kill.call(enemy);
+    enemy.stopCheckingForDeath.call(enemy);
+  });
+
+  Enemy.enemies = [];
+
+  Actor.actors = Actor.actors.slice(0, 1)
+
+  // console.log(Enemy.enemies.length);
+}
+
 function resetGame() {
-  spawnPlayer();
-  //spawnEnemies();
-  //startLoop();
+  clearEnemies();
+  player.reset();
+  rightPressed = false;
+  leftPressed = false;
 }
 
 function spawnPlayer() {
-  Player.spawnPlayer();
+  player = Player.spawnPlayer();
 }
 
 function spawnEnemies() {
@@ -32,23 +48,18 @@ function drawActors() {
   });
 }
 
-function run() {
-
-}
-
 function stop() {
   clearInterval(enemySpawnLoop);
   clearInterval(enemyMoveLoop);
   clearInterval(gameLoop);
-  // clearInterval(enemyDeleteLoop);
 }
 
 function endGame() {
   let bool = confirm("Game Over! Play again?");
+
   stop();
   if (bool) {
-    clearEnemies();
-    resetPlayer();
+    resetGame();
     startLoop();
   } else if (bool === false) {
     canvas.style.display = 'none';
@@ -57,11 +68,10 @@ function endGame() {
 
 function startLoop() {
   enemySpawnLoop = setInterval(Enemy.spawnEnemy, 1000);
-  // enemyDeleteLoop = setInterval(checkForDeletion, 10)
-  gameLoop = setInterval(run, 10);
+  // gameLoop = setInterval(run, 10);
   drawLoop = setInterval(drawActors, 10);
 }
 
-// console.log('hello');
+spawnPlayer();
 resetGame();
 startLoop();

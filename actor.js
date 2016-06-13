@@ -10,11 +10,10 @@ function Actor(rect, team, color) {
 Actor.actors = [];
 
 Actor.prototype.isColliding = function(actor) {
-  return this.rect.isColliding(actor.rect2);
+  return this.rect.isColliding(actor.rect);
 };
 
 Actor.prototype.move = function (vector) {
-  // console.log(vector.toString());
   this.rect.left += vector.x;
   this.rect.top += vector.y;
 };

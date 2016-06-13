@@ -16,12 +16,11 @@ Player.prototype = new Surrogate();
 Player.spawnPlayer = function() {
   let playerRect = new Rect(canvas.width/2 + 50/2, canvas.height - 50 - 10, 50, 50);
 
-  // let left = canvas.width/2 + playerRect.width/2;
-  // let top = canvas.height - playerRect.height - 10;
-
-  player = new Player(playerRect, 0, 'blue');
+  let player = new Player(playerRect, 0, 'blue');
 
   Actor.spawn.call(player, playerRect.left, playerRect.top, player);
+
+  return player;
 };
 
 Player.prototype.move = function (vector) {
@@ -48,8 +47,23 @@ Player.prototype.receiveInput = function () {
 
 Player.prototype.tick = function() {
   // this.draw(this.color);
+  let that = this;
+
+  Enemy.enemies.forEach(function (enemy) {
+    console.log();
+    if (enemy.isColliding(that)) {
+      // console.log(that + ' collided with ' + enemy);
+      endGame();
+    }
+  });
 
   this.move(this.receiveInput());
 };
+
+Player.prototype.reset = function() {
+  let playerRect = new Rect(canvas.width/2 + 50/2, canvas.height - 50 - 10, 50, 50);
+
+  this.rect = playerRect;
+}
 
 // module.exports = Player;

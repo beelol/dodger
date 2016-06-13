@@ -3,12 +3,6 @@ let leftPressed = false
 
 let playerX = canvas.width/2 - 25;
 let playerY = canvas.height - 50 - 25;
-//
-// function Input() {
-//   // document.addEventListener("keydown", keyDownHandler, false);
-//   //
-//   // document.addEventListener("keyup", keyUpHandler, false);
-// }
 
 keyDownHandler = function(e) {
   if(e.keyCode == 39) {

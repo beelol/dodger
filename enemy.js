@@ -11,14 +11,23 @@ function Enemy(rect, team, color) {
 
 function Surrogate() {};
 Surrogate.prototype = Actor.prototype;
-  Enemy.prototype = new Surrogate();
+Enemy.prototype = new Surrogate();
 
 Enemy.prototype.checkForDeletion = function() {
   if (this.outOfBounds()) {
-    Enemy.enemies.splice(Enemy.enemies.indexOf(this), 1);
-    Actor.actors.splice(Actor.actors.indexOf(this), 1);
-    clearInterval(this.deletionLoop);
+    this.kill();
   }
+}
+
+Enemy.prototype.kill = function() {
+  Enemy.enemies.splice(Enemy.enemies.indexOf(this), 1);
+  Actor.actors.splice(Actor.actors.indexOf(this), 1);
+
+  this.stopCheckingForDeath();
+}
+
+Enemy.prototype.stopCheckingForDeath = function() {
+  clearInterval(this.deletionLoop);
 }
 
 Enemy.spawnEnemy = function() {
@@ -46,6 +55,7 @@ Enemy.prototype.receiveInput = function () {
 
 Enemy.prototype.tick = function() {
   // this.parent.tick.call(this);
+
 
   this.move.call(this, this.receiveInput());
 }
