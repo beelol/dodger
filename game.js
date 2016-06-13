@@ -1,35 +1,46 @@
-let gameEnded = false;
-let enemySpawnLoop;
+// const Actor = require('./actor');
+// const Vector = require('./vector');
+// const Input = require('./input');
+// const Enemy = require('./enemy');
+// const Player = require('./player');
+
+let actors;
 let enemyMoveLoop;
-let enemyDeleteLoop;
 let gameLoop;
+let player;
 
-function drawPlayer() {
-  drawRectangle(playerX, playerY, 50, 50, "blue");
+function resetGame() {
+  spawnPlayer();
+  startLoop();
 }
 
-function draw() {
+function spawnPlayer() {
+  Player.spawnPlayer();
+}
+
+function drawActors() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  drawEnemies();
-  drawPlayer();
+
+  Actor.actors.forEach(function(actor){
+    actor.draw();
+  });
 }
+
+// function draw() {
+//   ctx.clearRect(0, 0, canvas.width, canvas.height);
+//   // drawEnemies();
+//   // drawPlayer();
+// }
 
 function run() {
-  if(rightPressed && playerX < canvas.width-50) {
-    playerX += 7;
-  }
-  else if(leftPressed && playerX > 0) {
-    playerX -= 7;
-  }
+  // if(rightPressed && playerX < canvas.width-50) {
+  //   playerX += 7;
+  // }
+  // else if(leftPressed && playerX > 0) {
+  //   playerX -= 7;
+  // }
 
-  let playerRect = {x:playerX, y:playerY, width:50, length:50};
-
-  if (collidesWithPlayer(playerRect)) {
-    gameEnded = true;
-    gameOver();
-  }
-
-  draw();
+  // let playerRect = {x:playerX, y:playerY, width:50, length:50};
 }
 
 function stop() {
@@ -39,7 +50,7 @@ function stop() {
   clearInterval(enemyDeleteLoop);
 }
 
-function gameOver() {
+function endGame() {
   let bool = confirm("Game Over! Play again?");
   stop();
   if (bool) {
@@ -52,11 +63,11 @@ function gameOver() {
 }
 
 function startLoop() {
-  enemySpawnLoop = setInterval(spawnEnemy, 1000);
-  enemyMoveLoop = setInterval(moveEnemies, 10);
-  enemyDeleteLoop = setInterval(deleteEnemies, 500);
+  // enemySpawnLoop = setInterval(spawnEnemy, 1000);
   gameLoop = setInterval(run, 10);
+  drawLoop = setInterval(drawActors, 10);
 }
 
-
-startLoop();
+// console.log('hello');
+resetGame();
+// startLoop();
