@@ -52,7 +52,7 @@ function gameOver() {
 }
 
 function startLoop() {
-  enemySpawnLoop = setInterval(spawnEnemy, 1000);
+  enemySpawnLoop = setInterval(spawnEnemy, 200);
   enemyMoveLoop = setInterval(moveEnemies, 10);
   enemyDeleteLoop = setInterval(deleteEnemies, 500);
   gameLoop = setInterval(run, 10);

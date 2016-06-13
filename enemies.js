@@ -36,7 +36,9 @@ function collidesWithPlayer(playerRect) {
 }
 
 function spawnEnemy() {
-  let x = Math.random() * (canvas.width-50);
+  let x = Math.random() * 200 + playerX - 75 ;
+  if (x > canvas.width - 50) { x = canvas.width - 50; }
+  if (x < 0) { x = 0;}
   let y = 0 - 50;
 
   let rect = {x:x, y:y, width:50, length:50};
