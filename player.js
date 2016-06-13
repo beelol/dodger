@@ -47,7 +47,7 @@ Player.prototype.receiveInput = function () {
 };
 
 Player.prototype.tick = function() {
-  this.draw(this.color);
+  // this.draw(this.color);
 
   this.move(this.receiveInput());
 };

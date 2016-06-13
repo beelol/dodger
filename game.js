@@ -32,28 +32,15 @@ function drawActors() {
   });
 }
 
-// function draw() {
-//   ctx.clearRect(0, 0, canvas.width, canvas.height);
-//   // drawEnemies();
-//   // drawPlayer();
-// }
-
 function run() {
-  // if(rightPressed && playerX < canvas.width-50) {
-  //   playerX += 7;
-  // }
-  // else if(leftPressed && playerX > 0) {
-  //   playerX -= 7;
-  // }
 
-  // let playerRect = {x:playerX, y:playerY, width:50, length:50};
 }
 
 function stop() {
   clearInterval(enemySpawnLoop);
   clearInterval(enemyMoveLoop);
   clearInterval(gameLoop);
-  clearInterval(enemyDeleteLoop);
+  // clearInterval(enemyDeleteLoop);
 }
 
 function endGame() {
@@ -70,6 +57,7 @@ function endGame() {
 
 function startLoop() {
   enemySpawnLoop = setInterval(Enemy.spawnEnemy, 1000);
+  // enemyDeleteLoop = setInterval(checkForDeletion, 10)
   gameLoop = setInterval(run, 10);
   drawLoop = setInterval(drawActors, 10);
 }
